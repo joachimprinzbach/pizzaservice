@@ -7,6 +7,9 @@ public class CatalogEntryDto {
     private String name;
     private boolean isAvailable;
 
+    public CatalogEntryDto() {
+    }
+
     public CatalogEntryDto(String name, boolean isAvailable) {
         this.name = name;
         this.isAvailable = isAvailable;
