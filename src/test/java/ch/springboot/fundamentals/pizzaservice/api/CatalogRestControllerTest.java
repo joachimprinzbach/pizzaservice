@@ -33,8 +33,8 @@ public class CatalogRestControllerTest {
     public void getAll() throws Exception {
         CatalogEntry margherita = new CatalogEntry("Margherita", 100);
         CatalogEntry salami = new CatalogEntry("Salami", 0);
-        List<CatalogEntry> allEmployees = Arrays.asList(margherita, salami);
-        when(catalogService.getAll()).thenReturn(allEmployees);
+        List<CatalogEntry> allEntries = Arrays.asList(margherita, salami);
+        when(catalogService.getAll()).thenReturn(allEntries);
 
         mockMvc.perform(get("/api/catalog")
                 .contentType(MediaType.APPLICATION_JSON))
