@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping(path = "api/catalog")
@@ -30,7 +29,7 @@ public class CatalogRestController {
 
     @GetMapping
     public Set<CatalogEntryDto> isPizzaAvailable() {
-        return StreamSupport.stream(catalogService.getAll().spliterator(), false)
+        return catalogService.getAll().stream()
                 .map(CatalogEntryDto::from)
                 .collect(Collectors.toSet());
     }

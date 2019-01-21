@@ -5,7 +5,8 @@ import ch.springboot.fundamentals.pizzaservice.infrastructure.CatalogRepository;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -24,7 +25,7 @@ public class CatalogServiceTest {
 
     @Test
     public void emptyRepository_notAvailable() {
-        when(mockedCatalogRepository.findAll()).thenReturn(new HashSet<>());
+        when(mockedCatalogRepository.findAll()).thenReturn(new ArrayList<>());
 
         boolean isAvailable = catalogService.isEntryAvailable("testname");
 
@@ -34,7 +35,7 @@ public class CatalogServiceTest {
 
     @Test
     public void unavailableInRepository_notAvailable() {
-        HashSet<CatalogEntry> entries = new HashSet<>();
+        List<CatalogEntry> entries = new ArrayList<>();
         entries.add(new CatalogEntry("testname", 0));
         when(mockedCatalogRepository.findAll()).thenReturn(entries);
 
@@ -46,7 +47,7 @@ public class CatalogServiceTest {
 
     @Test
     public void availableInRepository_available() {
-        HashSet<CatalogEntry> entries = new HashSet<>();
+        List<CatalogEntry> entries = new ArrayList<>();
         entries.add(new CatalogEntry("testname", 5));
         when(mockedCatalogRepository.findAll()).thenReturn(entries);
 

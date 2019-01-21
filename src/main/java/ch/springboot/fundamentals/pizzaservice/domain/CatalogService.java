@@ -5,8 +5,8 @@ import ch.springboot.fundamentals.pizzaservice.infrastructure.CatalogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.StreamSupport;
 
 @Service
 public class CatalogService {
@@ -19,13 +19,12 @@ public class CatalogService {
     }
 
     public boolean isEntryAvailable(String name) {
-        Iterable<CatalogEntry> allEntries = catalogRepository.findAll();
-        return StreamSupport.stream(allEntries.spliterator(), false)
+        return catalogRepository.findAll().stream()
                 .filter(isInStock())
                 .anyMatch(e -> e.getName().equals(name));
     }
 
-    public Iterable<CatalogEntry> getAll() {
+    public List<CatalogEntry> getAll() {
         return catalogRepository.findAll();
     }
 
