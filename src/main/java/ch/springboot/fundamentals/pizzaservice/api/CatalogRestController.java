@@ -28,7 +28,7 @@ public class CatalogRestController {
     }
 
     @GetMapping
-    public Set<CatalogEntryDto> isPizzaAvailable() {
+    public Set<CatalogEntryDto> getAll() {
         return catalogService.getAll().stream()
                 .map(CatalogEntryDto::from)
                 .collect(Collectors.toSet());
